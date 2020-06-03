@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 public class Dataset<T> {
 
+
     private final Map<String, Object> data = new HashMap<>();
 
     public Dataset(String label, Color[] background, Color border, List<T> data) {
@@ -28,6 +29,19 @@ public class Dataset<T> {
         } else {
             data.remove(key);
         }
+        return this;
+    }
+
+    public Dataset setMaxBarThickness(int value) {
+        this.data.put("maxBarThickness", value);
+        return this;
+    }
+    public Dataset setBarThickness(int value) {
+        this.data.put("barThickness", value);
+        return this;
+    }
+    public Dataset setMinBarLength(int value) {
+        this.data.put("MinBarLength", value);
         return this;
     }
 

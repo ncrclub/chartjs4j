@@ -41,6 +41,7 @@ public class Chart {
     public Chart addSeries(String label, List<ReportSeries> data, Color background, Color border) {
         return addSeries(type, label, data, new Color[] { background }, border);
     }
+
     public Chart addSeries(String label, List<ReportSeries> data, Color[] background, Color border) {
         return addSeries(type, label, data, background, border);
     }
@@ -58,6 +59,11 @@ public class Chart {
         List<Double> values = data.stream().map(d -> d.getValue()).collect(Collectors.toList());
         Dataset dataset = new MixedDataset(axis, type, label, background, border, values);
         addDataset(dataset);
+        return this;
+    }
+
+    public Chart withSeries(int index, Consumer<Dataset> consumer) {
+        consumer.accept(datasets.get(index));
         return this;
     }
 
