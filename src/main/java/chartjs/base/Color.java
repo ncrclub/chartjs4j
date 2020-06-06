@@ -4,7 +4,8 @@ import java.io.Serializable;
 
 public class Color implements Serializable {
 
-    public static final Color PURPLE = new Color(200, 0, 200);
+    public static final Color PURPLE = new Color(102, 51, 153, 0.85f);
+    public static final Color ORANGE = new Color(255, 140, 0, 0.85f);
     public static final Color RED = new Color(255, 0, 0);
     public static final Color MAROON = new Color(145, 18, 12, 0.85f);
     public static final Color GREEN = new Color(0, 255, 0);
