@@ -5,6 +5,8 @@ import java.io.Serializable;
 public class Color implements Serializable {
 
     public static final Color PURPLE = new Color(102, 51, 153, 0.85f);
+    public static final Color LIGHT_PURPLE = new Color(202, 101, 253, 0.75f);
+    public static final Color PURPLE_SHADOW = new Color(135, 68, 203, 0.55f);
     public static final Color ORANGE = new Color(255, 140, 0, 0.85f);
     public static final Color RED = new Color(255, 0, 0);
     public static final Color MAROON = new Color(145, 18, 12, 0.85f);
@@ -20,6 +22,9 @@ public class Color implements Serializable {
     public static final Color BLUE_2 = new Color(200, 100, 25, 0.70f);
     public static final Color BLUE_3 = new Color(155, 60, 35, 0.70f);
 
+    public static final Color PURPLE_SPECTRUM[] = new Color[]{
+            LIGHT_PURPLE, PURPLE
+    };
     public static final Color ORANGE_SPECTRUM[] = new Color[]{
             new Color(255, 140, 35, 0.70f),
             new Color(200, 100, 25, 0.70f),
