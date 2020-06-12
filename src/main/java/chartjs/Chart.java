@@ -54,6 +54,9 @@ public class Chart {
         return addSeries(xAxis(0), type, label, data, background, border);
     }
 
+    public Chart addSeries(AxesConfiguration axis, Type type, String label, List<ReportSeries> data, Color background, Color border) {
+        return addSeries(axis, type, label, data, new Color[] { background }, border);
+    }
     public Chart addSeries(AxesConfiguration axis, Type type, String label, List<ReportSeries> data, Color[] background, Color border) {
         setLabels(element -> element.getLabel(), data);
         List<Double> values = data.stream().map(d -> d.getValue()).collect(Collectors.toList());
