@@ -3,6 +3,8 @@ package chartjs.options;
 import chartjs.base.Axis;
 import chartjs.base.GridLines;
 import chartjs.base.Option;
+import chartjs.base.Stanza;
+import chartjs.options.axes.TickConfiguration;
 
 import java.util.HashSet;
 import java.util.Map;
@@ -13,11 +15,10 @@ import java.util.stream.Collectors;
 /**
  * https://www.chartjs.org/docs/latest/configuration/legend.html#configuration-options
  */
-public class AxesConfiguration {
+public class AxesConfiguration extends Stanza<AxesConfiguration> {
 
     public final String key;
     public final String id;
-    private final Set<Option<Object>> data= new HashSet<>();
 
     private final TickConfiguration ticks = new TickConfiguration();
     private final Axis axis;
@@ -34,29 +35,24 @@ public class AxesConfiguration {
     }
 
     public AxesConfiguration setDisplay(boolean value) {
-        set(new Option("display", value));
-        return this;
+        return option("display", value);
     }
 
     public AxesConfiguration setPosition(String value) {
-        set(new Option("position", value));
-        return this;
+        return option("position", value);
     }
 
     public AxesConfiguration stacked(boolean value) {
-        set(new Option("stacked", value));
-        return this;
+        return option("stacked", value);
     }
     public AxesConfiguration stacked() {
         return stacked(true);
     }
     public AxesConfiguration linear() {
-        set(new Option("type", "linear"));
-        return this;
+        return option("type", "linear");
     }
     public AxesConfiguration logarithmic() {
-        set(new Option("type", "logarithmic"));
-        return this;
+        return option("type", "logarithmic");
     }
 
     public AxesConfiguration withTicks(Consumer<TickConfiguration> consumer) {
@@ -69,16 +65,10 @@ public class AxesConfiguration {
         return this;
     }
 
-    private void set(Option option) {
-        if (this.data.contains(option)) {
-            this.data.remove(option);
-        }
-        this.data.add(option);
-    }
 
 
     public Object pack() {
-        Map<String, Object> packed = data.stream().collect(Collectors.toMap(k -> k.name, v -> v.pack()));
+        Map<String, Object> packed = (Map<String, Object>) super.pack();
         packed.put("id", id);
         packed.put("ticks", ticks.pack());
         packed.put("gridLines", gridLines.pack());

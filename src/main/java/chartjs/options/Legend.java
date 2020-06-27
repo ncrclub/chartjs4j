@@ -1,6 +1,7 @@
 package chartjs.options;
 
 import chartjs.base.Option;
+import chartjs.base.Stanza;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,17 +10,15 @@ import java.util.stream.Collectors;
 /**
  * https://www.chartjs.org/docs/latest/configuration/legend.html#configuration-options
   */
-public class Legend {
+public class Legend extends Stanza<Legend> {
 
     public enum Position { top, bottom, left, right }
-
-    private final Set<Option<Object>> data= new HashSet<>();
 
     public Legend() {
     }
 
     public Legend setPosition(Position value) {
-        set(new Option("position", value) {
+        super.set(new Option("position", value) {
             @Override
             public Object pack() {
                 return this.value.toString();
@@ -33,29 +32,15 @@ public class Legend {
     }
 
     public Legend setDisplay(boolean value) {
-        set(new Option("display", value));
-        return this;
+        return option("display", value);
     }
 
     public Legend withFullWidth(boolean value) {
-        set(new Option("fullWidth", value));
-        return this;
+        return option("fullWidth", value);
     }
 
     public Legend withReverse(boolean value) {
-        set(new Option("reverse", value));
-        return this;
+        return option("reverse", value);
     }
 
-    private void set(Option option) {
-        if (this.data.contains(option)) {
-            this.data.remove(option);
-        }
-        this.data.add(option);
-    }
-
-
-    public Object pack() {
-        return data.stream().collect(Collectors.toMap(k -> k.name, v -> v.value));
-    }
 }

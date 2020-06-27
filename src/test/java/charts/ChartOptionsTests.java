@@ -59,7 +59,7 @@ public class ChartOptionsTests {
         options.title.withPosition(Title.Position.left);
         Map<String, Object> map = options.pack();
         Assert.assertEquals(true, ((Map<String, Object>)map.get("title")).get("display"));
-        Assert.assertEquals("left", ((Map<String, Object>)map.get("title")).get("position"));
+        Assert.assertEquals(Title.Position.left, ((Map<String, Object>)map.get("title")).get("position"));
     }
 
 
