@@ -24,7 +24,19 @@ sourceCompatibility = '1.8'
 publishing {
     publications {
         maven(MavenPublication) {
-            from(components.java)
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            url = version.endsWith('SNAPSHOT') ? "$repo_snapshots" : "$repo_releases"
+            credentials {
+                 username = "$repo_user"
+                 password = "$repo_pass"
+            }
+            authentication {
+                basic(BasicAuthentication)
+            }
         }
     }
 }
