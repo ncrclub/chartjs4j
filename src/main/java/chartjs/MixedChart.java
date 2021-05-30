@@ -14,7 +14,7 @@ public class MixedChart extends Chart {
         super(type, title);
     }
 
-    public Chart addSeries(Type type, String label, List<ReportSeries> data, Color[] background, Color border) {
+    public Chart addSeries(Type type, String label, List<? extends ReportSeries> data, Color[] background, Color border) {
         setLabels(d -> d.getLabel(), data);
         List<Double> values = data.stream().map(d -> d.getValue()).collect(Collectors.toList());
         addDataset(new MixedDataset(xAxis(0), type, label, background, border, values));
