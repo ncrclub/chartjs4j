@@ -4,6 +4,7 @@ import chartjs.base.Option;
 import chartjs.base.Stanza;
 
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -13,6 +14,8 @@ import java.util.stream.Collectors;
 public class Legend extends Stanza<Legend> {
 
     public enum Position { top, bottom, left, right }
+
+    Stanza labels = new Stanza();
 
     public Legend() {
     }
@@ -43,4 +46,14 @@ public class Legend extends Stanza<Legend> {
         return option("reverse", value);
     }
 
+    public Stanza labels() {
+        return this.labels;
+    }
+
+
+    public Object pack() {
+        Map<String, Object> packed = (Map<String, Object>) super.pack();
+        packed.put("labels", labels.pack());
+        return packed;
+    }
 }
