@@ -1,6 +1,7 @@
 package chartjs.options.axes;
 
 import chartjs.base.Stanza;
+import chartjs.options.AxesConfiguration;
 
 /**
  * https://www.chartjs.org/docs/latest/configuration/legend.html#configuration-options
@@ -22,6 +23,10 @@ public class TickConfiguration extends Stanza<TickConfiguration> {
 
     public TickConfiguration setDisplay(boolean value) {
         return option("display", value);
+    }
+
+    public TickConfiguration withFontColor(String value) {
+        return option("fontColor", value);
     }
 
     public TickConfiguration setMin(int value) {

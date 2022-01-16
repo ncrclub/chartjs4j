@@ -6,7 +6,7 @@
 
     <artifactId>chartjs4j</artifactId>
     <groupId>org.ncrocketry</groupId>
-    <version>2022.1002</version>
+    <version>2022.1003</version>
 
     <properties>
         <java.version>1.8</java.version>
