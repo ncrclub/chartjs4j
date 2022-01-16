@@ -36,8 +36,8 @@ public class Chart {
         );
         withLedgend(l -> l.labels().option("fontColor","#000000"));
         withLedgend(l -> l.labels().option("color","#000000"));
-        withXAxes(0, axes -> axes.withTicks(ticks -> ticks.setMin(0)));
-        withYAxes(0, axes -> axes.withTicks(ticks -> ticks.setMin(0)));
+        withXAxes(0, axes -> axes.withTicks(ticks -> ticks.setMin(0)).tickFontColor("#000000"));
+        withYAxes(0, axes -> axes.withTicks(ticks -> ticks.setMin(0)).tickFontColor("#000000"));
     }
 
 
