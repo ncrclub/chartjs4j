@@ -60,10 +60,16 @@ public class AxesConfiguration extends Stanza<AxesConfiguration> {
         return this;
     }
 
+    public AxesConfiguration tickFontColor(String htmlColor) {
+        ticks.withFontColor(htmlColor);
+        return this;
+    }
+
     public AxesConfiguration withGridLines(Consumer<GridLines> consumer) {
         consumer.accept(gridLines);
         return this;
     }
+
 
 
 
