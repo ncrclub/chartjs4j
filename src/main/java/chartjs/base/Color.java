@@ -11,7 +11,8 @@ public class Color implements Serializable {
     public static final Color ORANGE = new Color(255, 140, 0, 0.85f);
     public static final Color RED = new Color(255, 0, 0);
     public static final Color MAROON = new Color(145, 18, 12, 0.85f);
-    public static final Color GREEN = new Color(0, 255, 0);
+    public static final Color GREEN = new Color(10, 155, 10);
+    public static final Color BRIGHT_GREEN = new Color(0, 255, 0);
     public static final Color MUTED_GREEN = new Color(0, 155, 0);
     public static final Color TRANSPARENT_GRAY = new Color(150, 150, 150, 0.25f);
     public static final Color GRAY = new Color(150, 150, 150, 0.85f);
@@ -22,17 +23,21 @@ public class Color implements Serializable {
     public static final Color BLACK = new Color(0, 0, 0);
     public static final Color WHITE = new Color(255, 255, 255);
 
-    public static final Color BLUE_1 = new Color(255, 140, 35, 0.70f);
-    public static final Color BLUE_2 = new Color(200, 100, 25, 0.70f);
-    public static final Color BLUE_3 = new Color(155, 60, 35, 0.70f);
+    public static final Color ORANGE_1 = new Color(255, 140, 35, 0.70f);
+    public static final Color ORANGE_2 = new Color(200, 100, 25, 0.70f);
+    public static final Color ORANGE_3 = new Color(155, 60, 35, 0.70f);
+
+    public static final Color BLUE_1 = new Color(10, 140, 135, 0.70f);
+    public static final Color BLUE_2 = new Color(10, 100, 125, 0.70f);
+    public static final Color BLUE_3 = new Color(10, 60, 135, 0.70f);
 
     public static final Color PURPLE_SPECTRUM[] = new Color[]{
             LIGHT_PURPLE, PURPLE
     };
     public static final Color ORANGE_SPECTRUM[] = new Color[]{
-            new Color(255, 140, 35, 0.70f),
-            new Color(200, 100, 25, 0.70f),
-            new Color(155, 60, 35, 0.70f)
+            ORANGE_1,
+            ORANGE_2,
+            ORANGE_3
     };
 
 
@@ -73,5 +78,10 @@ public class Color implements Serializable {
 
     public static Color next() {
         return SOFT_BLUE;
+    }
+
+    public Color transparent(int transparency) {
+        float opauque = Math.abs(1 - (float)(transparency)/100f);
+        return new Color(red, green, blue, opauque);
     }
 }

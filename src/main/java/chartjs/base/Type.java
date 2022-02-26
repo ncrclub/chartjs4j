@@ -9,7 +9,8 @@ public enum Type {
     , pie("pie")
     , polarArea("polarArea")
     , bubble("bubble")
-    , scatter("scatter");
+    , scatter("scatter")
+    ;
 
     private final String type;
 

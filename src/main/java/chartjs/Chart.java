@@ -7,10 +7,7 @@ import chartjs.options.Legend;
 import chartjs.options.Title;
 import chartjs.options.Tooltips;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -42,7 +39,11 @@ public class Chart {
 
 
     public Chart addSeries(String label, List<? extends ReportSeries> data, Color background, Color border) {
-        return addSeries(type, label, data, new Color[] { background }, border);
+        return addSeries(type, label, data, new Color[] { background }, new Color[] {border});
+    }
+
+    public Chart addSeries(String label, List<? extends ReportSeries> data, Color[] background, Color[] border) {
+        return addSeries(type, label, data, background, border);
     }
 
     public Chart addSeries(String label, List<? extends ReportSeries> data, Color[] background, Color border) {
@@ -50,17 +51,21 @@ public class Chart {
     }
 
     public Chart addSeries(Type type, String label, List<? extends ReportSeries> data, Color background, Color border) {
-        return addSeries(xAxis(0), type, label, data, new Color[] { background }, border);
+        return addSeries(xAxis(0), type, label, data, new Color[] { background }, new Color[] { border });
     }
 
-    public Chart addSeries(Type type, String label, List<? extends ReportSeries> data, Color[] background, Color border) {
+    public Chart addSeries(Type type, String label, List<? extends ReportSeries> data, Color[] background, Color[] border) {
         return addSeries(xAxis(0), type, label, data, background, border);
     }
 
-    public Chart addSeries(AxesConfiguration axis, Type type, String label, List<? extends ReportSeries> data, Color background, Color border) {
-        return addSeries(axis, type, label, data, new Color[] { background }, border);
+    public Chart addSeries(Type type, String label, List<? extends ReportSeries> data, Color[] background, Color border) {
+        return addSeries(xAxis(0), type, label, data, background, new Color[] { border });
     }
-    public Chart addSeries(AxesConfiguration axis, Type type, String label, List<? extends ReportSeries> data, Color[] background, Color border) {
+
+    public Chart addSeries(AxesConfiguration axis, Type type, String label, List<? extends ReportSeries> data, Color background, Color border) {
+        return addSeries(axis, type, label, data, new Color[] { background }, new Color[] { border });
+    }
+    public Chart addSeries(AxesConfiguration axis, Type type, String label, List<? extends ReportSeries> data, Color[] background, Color[] border) {
         setLabels(element -> element.getLabel(), data);
         List<Double> values = data.stream().map(d -> d.getValue()).collect(Collectors.toList());
         Dataset dataset = new MixedDataset(axis, type, label, background, border, values);
@@ -68,6 +73,14 @@ public class Chart {
         return this;
     }
 
+    public Chart withSeries(String name, Consumer<Dataset> consumer) {
+        Optional<Dataset> found = datasets.stream().filter(d -> name.equals(d.name())).findFirst();
+        if (!found.isPresent()) {
+            throw new RuntimeException("Series name '"+ name +"' not defined.");
+        }
+        consumer.accept(found.get());
+        return this;
+    }
     public Chart withSeries(int index, Consumer<Dataset> consumer) {
         consumer.accept(datasets.get(index));
         return this;

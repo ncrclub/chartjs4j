@@ -13,6 +13,8 @@ snapshot:
 version-release:
 	mvn versions:set -DnewVersion=$(RELEASE_VERSION)
 
+test:
+	mvn test
 install:
 	mvn install
 publish:

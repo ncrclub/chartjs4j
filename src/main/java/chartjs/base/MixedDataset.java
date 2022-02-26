@@ -6,7 +6,7 @@ import java.util.List;
 
 public class MixedDataset<Object> extends Dataset {
 
-    public MixedDataset(AxesConfiguration axis, Type type, String label, Color[] background, Color border, List<Object> data) {
+    public MixedDataset(AxesConfiguration axis, Type type, String label, Color[] background, Color[] border, List<Object> data) {
         super(label, background, border, data);
         setType(type).setAxis(axis);
     }
